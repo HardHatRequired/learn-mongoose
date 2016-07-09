@@ -2,8 +2,13 @@ angular
     .module('avengers')
     .controller('MainCtrl', function($scope, dataService) {
 
-        $scope.avengers = dataService.getAvengers();
+        $scope.avengers = function() {
+          dataService.getAvengers().then(function(response) {
+            $scope.avengers = response;
+          });
+        };
 
-        $scope.test = 'hey';
+        $scope.getAvengers();
+
 
     });
